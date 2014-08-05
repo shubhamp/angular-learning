@@ -1,0 +1,21 @@
+<html ng-app="nameApp">
+  <head>
+    <meta charset="utf-8">
+    <title Angular-Learning></title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+    <script>
+      var nameApp = angular.module('nameApp', []);
+      nameApp.controller('NameCtrl', function ($scope){
+      $scope.firstName = "shubham";
+      $scope.lastName = "pawar";
+      });
+    </script>
+  </head>
+  <body ng-controller="NameCtrl">
+    First Name: <input ng-model="firstName" type="text" />
+    <br>
+    Last Name: <input ng-model="lastName" type="text"/>
+    <br>
+    Hello {{firstName}} {{lastName}}
+  </body>
+</html>

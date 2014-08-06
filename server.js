@@ -1,15 +1,17 @@
 var http = require('http');
 var fs = require('fs');
+var static = require('node-static');
+
+var fileServer = new static.Server();
 
 function start(){
-    function onRequest(request, response) {
-	console.log('request recieved');
-	var buffer = fs.readFileSync('index.html');
-	var string = buffer.toString();
-	response.write(string);
-	response.end();
-    }
-    http.createServer(onRequest).listen(8888);
+   
+    http.createServer(function (request, response) {
+      request.addListener('end', function(){
+          console.log("request recieved");
+	  fileServer.serve(request, response);
+      }).resume();
+    }).listen(8888);
     console.log("Server Has Started.");
 }
 
